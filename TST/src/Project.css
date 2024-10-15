@@ -1,0 +1,81 @@
+/* src/Project.css */
+
+body {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text color */
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+.App {
+    max-width: 2000px; /* Center the app */
+    margin: 0 auto; /* Center alignment */
+    text-align: center;
+    padding: 20px;
+    /* margin-right: 2%; */
+}
+
+h2 {
+    color: #007AFF; /* Blue color for the title */
+}
+
+.project-container {
+    border: 1px solid #007AFF; /* Border color */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.project-item {
+    border-bottom: 1px dashed #007AFF; /* Dashed border for items */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+button {
+    background-color: #007AFF; /* Button background */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    padding: 5px 10px; /* Button padding */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 5px; /* Rounded corners */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+input[type="text"] {
+    padding: 5px; /* Input padding */
+    margin-right: 10px; /* Space between input and button */
+    border: 1px solid #007AFF; /* Input border color */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #1e1e1e; /* Dark input background */
+    color: #ffffff; /* Light text color */
+}
+
+/* Add this new ID style */
+#deleteByTitle-button {
+    background-color: 007AFF; /* Make the button background transparent */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor */
+    color: white; /* Set text/icon color */
+    margin-left: 10px;
+}
+
+#deleteByTitle-button:hover {
+    opacity: 0.7; /* Slightly fade the button on hover */
+}
+
+#open-button {
+    background-color: 007AFF; /* Make the button background transparent */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor */
+    color: white; /* Set text/icon color */
+    margin-left: 10px;
+}
+
+#project-name {
+    width: 100px;
+}

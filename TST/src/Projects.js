@@ -32,21 +32,16 @@ function App() {
   // Adding a project
   const addProject = async () => {
     if (searchTerm.trim()) {
-      const createdAt = new Date(); // Get current date and time
-      const docRef = await addDoc(collection(db, "projects"), {
-        title: searchTerm,
-        createdAt: createdAt, // Store the creation date
-        comment: "" // Initialize comment
-      });
-      setProjects([...projects, { id: docRef.id, title: searchTerm, createdAt }]);
+      const docRef = await addDoc(collection(db, "projects"), { title: searchTerm });
+      setProjects([...projects, { id: docRef.id, title: searchTerm }]); // Update projects state
       setSearchTerm("");
     }
   };
 
-  // Function to open a project and navigate to its details
-  const openProject = (id) => {
-      navigate(`/projects/${id}`); // Navigate to the project details page
-  };
+// Function to open a project and navigate to its details
+const openProject = (id) => {
+    navigate(`/projects/${id}`); // Navigate to the project details page
+    };
 
   // Deleting a project by ID
   const deleteProject = async (id) => {
@@ -73,11 +68,11 @@ function App() {
   );
 
   return (
-    <div className="App" style={{ textAlign: "left", padding: "20px" }}>
+    <div className="App" style={{ textAlign: "center", padding: "20px" }}>
       <h2>PROJECTS</h2>
 
       {/* Scrollable Project List */}
-      <div style={{ border: "1px solid #007AFF", padding: "15px", maxHeight: "200px", overflowY: "scroll" }}>
+      <div style={{ border: "1px solid #007AFF", padding: "10px", maxHeight: "200px", overflowY: "scroll" }}>
         {filteredProjects.map((project) => (
           <div
             key={project.id}
@@ -89,15 +84,13 @@ function App() {
               padding: "5px 0"
             }}
           >
-            <span id="project-name">{project.title}</span>
-            <div>
-              <button onClick={() => deleteProject(project.id)}>
-                <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }} />
-              </button>
-              <button id="open-button" onClick={() => openProject(project.id)}>
-                <FontAwesomeIcon icon={faRightToBracket} style={{ color: 'white' }} />
-              </button>
-            </div>
+            <span>{project.title}</span>
+            <button onClick={() => deleteProject(project.id)}>
+              <FontAwesomeIcon icon={faTrash} style={{ color: 'white' }} />
+            </button>
+            <button onClick={() => openProject(project.id)}>
+              <FontAwesomeIcon icon={faRightToBracket} style={{ color: 'white' }} />
+            </button>
           </div>
         ))}
       </div>
@@ -121,9 +114,6 @@ function App() {
         
 
       {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
-      <Routes>
-        <Route path="/projects/:id" element={<ProjectDetails />} />
-      </Routes>
     </div>
   );
 }
