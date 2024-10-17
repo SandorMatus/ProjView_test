@@ -1,0 +1,32 @@
+
+/* src/Header.css */
+#header {
+    background-color: #282c34; /* Dark background */
+    padding: 10px; /* Padding around header */
+}
+
+.aui-header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aui-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.aui-nav li {
+    margin: 0 10px;
+}
+
+.aui-nav a {
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.aui-nav a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
