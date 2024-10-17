@@ -23,3 +23,8 @@ or to initalize to firebase use:
 ```bash
 firebase init
 ```
+
+then optionally obtain the API Key from firebase and to deploy to firebase run
+```bash
+firebase deploy
+```
