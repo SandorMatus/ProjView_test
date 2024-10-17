@@ -24,7 +24,7 @@ or to initalize to firebase use:
 firebase init
 ```
 
-then optionally obtain the API Key from firebase and to deploy to firebase run
+then optionally obtain the API Key from firebase in /src/firebase.js and to deploy to firebase run
 ```bash
 firebase deploy
 ```
