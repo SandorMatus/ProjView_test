@@ -7,6 +7,7 @@ const ProjectDetails = ({ projectId, onClose, refreshProjects }) => {
     const [project, setProject] = useState(null); // State to hold project details
     const [username, setUsername] = useState(""); // State for username
     const [comment, setComment] = useState(""); // State for comment
+    const [selectedStatus, setSelectedStatus] = useState(""); // State for selected status
 
     useEffect(() => {
         const fetchProjectDetails = async () => {
@@ -45,6 +46,21 @@ const ProjectDetails = ({ projectId, onClose, refreshProjects }) => {
             const updatedDocSnap = await getDoc(docRef);
             setProject({ id: updatedDocSnap.id, ...updatedDocSnap.data() });
             refreshProjects(); // Refresh the project list after submitting a comment
+        }
+    };
+
+    // New function to handle status change
+    const handleStatusChange = (e) => {
+        setSelectedStatus(e.target.value);
+    };
+
+    // New function to handle status submission
+    const handleSubmit = async () => {
+        if (selectedStatus) {
+            await updateStatus(selectedStatus);
+            setSelectedStatus(""); // Clear the selected status after submission
+        } else {
+            alert("Please select a status before submitting.");
         }
     };
 
@@ -93,9 +109,16 @@ const ProjectDetails = ({ projectId, onClose, refreshProjects }) => {
                 </form>
 
                 <div style={{ marginTop: "20px" }}>
-                    <button onClick={() => updateStatus("active")}>Set Active</button>
-                    <button onClick={() => updateStatus("inactive")}>Set Inactive</button>
-                    <button onClick={() => updateStatus("custom")}>Set Custom</button>
+                    <select value={selectedStatus} onChange={handleStatusChange}>
+                        <option value="">Select a status</option>
+                        <option value="active">Set Active</option>
+                        <option value="new">Set New</option>
+                        <option value="hold">Set Hold</option>
+                        <option value="end">Set Ended</option>
+                    </select>
+                    
+                    {/* Submit button */}
+                    <button onClick={handleSubmit}>Submit Status</button>
                 </div>
             </div>
         </div>

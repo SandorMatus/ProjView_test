@@ -58,8 +58,9 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject }) => {
               onChange={(e) => setType(e.target.value)}
             >
               <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-              <option value="Custom">Custom</option>
+              <option value="New">Inactive</option>
+              <option value="Hold">Hold</option>
+              <option value="End">Ended</option>
             </select>
           </div>
 

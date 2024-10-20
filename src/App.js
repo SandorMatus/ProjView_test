@@ -4,7 +4,7 @@ import { collection, addDoc, getDocs, deleteDoc, doc,updateDoc } from "firebase/
 import { db } from "./firebase";
 import './Project.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faCode, faTrash, faFileCirclePlus, faCheck, faXmark, faPen, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faCode, faTrash, faFileCirclePlus, faCheck, faXmark, faPen, faQuestionCircle, faPause, faCheckDouble} from '@fortawesome/free-solid-svg-icons';
 import ProjectDetails from "./ProjectDetails";
 import Header from './Header'; 
 import AddProjectModal from "./AddProjectModal"; 
@@ -196,25 +196,34 @@ const addProject = async (projectData) => {
                   onClick={() => setSelectedStatus("active")} 
                   className={selectedStatus === "active" ? "active" : ""}
                 >
-                  Active
+                  <FontAwesomeIcon icon={faCheck} /> Active
                 </a>
               </li>
               <li className="filterIl">
                 <a 
                   href="#" 
-                  onClick={() => setSelectedStatus("inactive")} 
-                  className={selectedStatus === "inactive" ? "active" : ""}
+                  onClick={() => setSelectedStatus("new")} 
+                  className={selectedStatus === "new" ? "active" : ""}
                 >
-                  Inactive
+                  <FontAwesomeIcon icon={faPen} /> New
                 </a>
               </li>
               <li className="filterIl">
                 <a 
                   href="#" 
-                  onClick={() => setSelectedStatus("custom")} 
-                  className={selectedStatus === "custom" ? "active" : ""}
+                  onClick={() => setSelectedStatus("hold")} 
+                  className={selectedStatus === "hold" ? "active" : ""}
                 >
-                  Custom
+                  <FontAwesomeIcon icon={faPause} /> Hold
+                </a>
+              </li>
+              <li className="filterIl">
+                <a 
+                  href="#" 
+                  onClick={() => setSelectedStatus("end")} 
+                  className={selectedStatus === "end" ? "active" : ""}
+                >
+                  <FontAwesomeIcon icon={faXmark} /> End
                 </a>
               </li>
             </ul>
@@ -233,7 +242,7 @@ const addProject = async (projectData) => {
               placeholder="Search projects..."
             />
           </div>
-
+          <div style={{ maxHeight: "60%", overflowY: "auto" }}>
           <table>
             <thead>
               <tr>
@@ -263,8 +272,9 @@ const addProject = async (projectData) => {
                   <td>{project.id}</td>
                   <td>           
                     {project.status.toLowerCase() === "active" && <FontAwesomeIcon icon={faCheck} />}
-                    {project.status.toLowerCase() === "inactive" && <FontAwesomeIcon icon={faXmark} />}
-                    {project.status.toLowerCase() === "custom" && <FontAwesomeIcon icon={faPen} />}</td>
+                    {project.status.toLowerCase() === "new" && <FontAwesomeIcon icon={faPen} />}
+                    {project.status.toLowerCase() === "hold" && <FontAwesomeIcon icon={faPause} />}
+                    {project.status.toLowerCase() === "end" && <FontAwesomeIcon icon={faXmark} />}</td>
                   <td>{project.lead}</td>
                   <td>
                     {project.category === "Code" && <FontAwesomeIcon icon={faCode} />}
@@ -279,6 +289,7 @@ const addProject = async (projectData) => {
               ))}
             </tbody>
           </table>
+          </div>
 
           <div style={{ marginTop: "20px" }}>
             <button onClick={openModal} className="add-project-btn">
